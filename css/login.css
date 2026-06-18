@@ -48,3 +48,14 @@ html,body{min-height:100%;background:#000}
 @media (min-width:521px){
     .screen{box-shadow:0 0 40px rgba(0,0,0,.6)}
 }
+
+/* tablet portrait: mobile poster image is too narrow to fill the wider
+   screen, leaving black bars left/right. Use it as a full-bleed
+   background instead of an inline <img> so it covers the whole width. */
+@media (min-width:600px) and (orientation:portrait){
+    .screen{max-width:none}
+    .poster{background-image:url(../img/poster.jpg);background-size:cover;
+        background-position:top center;min-height:70vh}
+    .poster img{display:none}
+    .panel{max-width:520px;margin:0 auto;width:100%}
+}
