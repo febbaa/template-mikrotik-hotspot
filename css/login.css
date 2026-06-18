@@ -1,50 +1,52 @@
 *{margin:0;padding:0;border:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
-html,body{min-height:100%;background:#000}
+html,body{height:100%;background:#000}
 
-.screen{display:flex;flex-direction:column;min-height:100vh;max-width:520px;margin:0 auto;background:#000}
+/* ---- full-window stage, image is never cropped/stretched ---- */
+.screen{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#000}
 
-/* ---- poster (top artwork) ---- */
-.poster{position:relative;width:100%;background:#111;overflow:hidden}
-.poster img{display:block;width:100%;height:auto}
-.mode-hidden .poster{cursor:pointer}
-.poster-empty{aspect-ratio:9/13;display:flex;align-items:center;justify-content:center;
-    color:rgba(255,255,255,.4);font-size:13px;text-align:center;padding:20px}
-.poster-empty::before{content:"Add your poster image to img/poster.jpg"}
+.bg{position:relative;display:inline-block;line-height:0}
+.bg-img{display:block;max-width:100vw;max-height:100vh;width:auto;height:auto}
+.mode-hidden .bg{cursor:pointer}
 
-/* ---- bottom black panel ---- */
-.panel{flex:1;padding:28px 24px 32px;display:flex;flex-direction:column;align-items:stretch}
+/* ---- password field + login button, positioned on top of the image ---- */
+.overlay{position:absolute;inset:0}
+.overlay form{position:relative;width:100%;height:100%}
 
-.error-msg{color:#ff6b6b;text-align:center;font-size:14px;margin-bottom:14px;min-height:0}
+.error-msg{
+    position:absolute;left:25.3%;width:49.4%;top:64.5%;
+    color:#ff6b6b;text-align:center;font-size:min(2.6vw,3vh);min-height:0
+}
 .error-msg:empty{display:none}
 
 .password-field{
-    width:100%;height:54px;margin-bottom:18px;padding:0 22px;
-    background:transparent;border:1px solid rgba(255,255,255,.55);
-    border-radius:30px;color:#fff;font-size:16px;outline:0;
+    position:absolute;left:25.3%;width:49.4%;top:72.4%;height:4.7%;
+    padding:0 4%;
+    background:transparent;border:1px solid rgba(255,255,255,.65);
+    border-radius:999px;color:#fff;font-size:min(3.2vw,3.4vh);outline:0;
     appearance:none;-webkit-appearance:none
 }
-.password-field::placeholder{color:rgba(255,255,255,.55)}
-.password-field:focus{border-color:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.15)}
+.password-field::placeholder{color:rgba(255,255,255,.6)}
+.password-field:focus{border-color:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.18)}
 
 .btn-login{
-    width:100%;height:54px;border:0;border-radius:30px;
-    background:#fff;color:#000;font-size:17px;font-weight:600;
-    cursor:pointer;margin-bottom:28px;transition:background .2s ease-in-out
+    position:absolute;left:25.3%;width:49.4%;top:78.1%;height:4.85%;
+    border:0;border-radius:999px;
+    background:#fff;color:#000;font-size:min(3.3vw,3.5vh);font-weight:600;
+    cursor:pointer;transition:background .2s ease-in-out
 }
 .btn-login:hover,.btn-login:focus{background:#e6e6e6}
 
 /* hide elements per display mode (set on <body>) */
 .mode-button .password-field{display:none}
-.mode-hidden .password-field,.mode-hidden .btn-login{display:none}
+.mode-button .btn-login{top:75.2%}
+.mode-hidden .password-field,.mode-hidden .btn-login,.mode-hidden .error-msg{display:none}
 
-.brand{text-align:center;color:rgba(255,255,255,.85);font-size:13px;margin-bottom:10px}
-.brand-logo{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px 0 18px;
-    color:#fff;font-weight:800;font-size:22px;letter-spacing:.5px;text-transform:uppercase}
-.brand-logo .dot{width:30px;height:30px;border-radius:50%;background:#fff;color:#000;
-    display:inline-flex;align-items:center;justify-content:center;font-weight:900;font-size:14px}
-
-.tagline{text-align:center;color:rgba(255,255,255,.6);font-size:13px;margin-top:auto}
-
-@media (min-width:521px){
-    .screen{box-shadow:0 0 40px rgba(0,0,0,.6)}
+/* ---- landscape/desktop poster has its dark panel on the right half ---- */
+@media (orientation:landscape){
+    .bg{width:100vw;height:100vh}
+    .bg-img{width:100vw;height:100vh;max-width:none;max-height:none;object-fit:cover}
+    .error-msg{left:62.5%;width:25%;top:38%;font-size:min(1.3vw,2.6vh)}
+    .password-field{left:62.5%;width:25%;top:44.3%;height:4.6%;font-size:min(1.6vw,2.8vh)}
+    .btn-login{left:62.5%;width:25%;top:50%;height:4.75%;font-size:min(1.6vw,2.9vh)}
+    .mode-button .btn-login{top:44.3%}
 }

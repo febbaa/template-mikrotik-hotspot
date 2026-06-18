@@ -1,4 +1,5 @@
-<html>
+<!doctype html>
+<html lang="id">
 
 <head>
     <meta charset="utf-8">
@@ -6,15 +7,23 @@
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="expires" content="-1">
     <title>Internet hotspot - Error</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/message.css">
 </head>
 
 <body>
-    <div class="ie-fixMinHeight">
-        <div class="main">
-            <div class="wrap">
-                <h1>Hotspot error: $(error)</h1>
-                <p class="info">Log in page: <a href="$(link-login)">$(link-login)</a></p>
+    <div class="screen">
+        <div class="bg">
+            <picture>
+                <source media="(orientation: landscape)" srcset="img/poster-landscape.jpg">
+                <img class="bg-img" src="img/poster-portrait.jpg" alt="" />
+            </picture>
+
+            <div class="overlay">
+                <div class="message">
+                    <h1>Terjadi kesalahan</h1>
+                    <p>$(error)</p>
+                    <a class="btn-link" href="$(link-login)">Kembali ke halaman login</a>
+                </div>
             </div>
         </div>
     </div>
