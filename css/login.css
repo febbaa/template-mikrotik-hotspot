@@ -50,3 +50,12 @@ html,body{height:100%;background:#000}
     .btn-login{left:62.5%;width:25%;top:50%;height:4.75%;font-size:min(1.6vw,2.9vh)}
     .mode-button .btn-login{top:44.3%}
 }
+
+/* ---- tablet portrait: the contained poster leaves black bars on the
+   sides since it's wider than a phone but still portrait. Fill those
+   bars with a blurred backdrop of the poster instead of flat black,
+   without touching the foreground image or its overlay alignment. ---- */
+@media (min-width:600px) and (orientation:portrait){
+    body{background:url(../img/poster-tablet-bg.jpg) center/cover fixed}
+    .screen{background:transparent}
+}
